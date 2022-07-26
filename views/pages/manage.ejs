@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/head.ejs") %>
+</head>
+
+<body>
+    <%- include("../partials/nav.ejs") %>
+
+        <div class="container">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">user_id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Active Roles</th>
+                        <th scope="col" class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% people.forEach(user=>{ %>
+                        <tr>
+                            <th scope="row">
+                                <%= user.user_id %>
+                            </th>
+                            <td>
+                                <%= user.name %>
+                            </td>
+                            <td>
+                                <%= user.position %>
+                            </td>
+                            <td>
+                                <%= user.username %>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="button"
+                                    autocomplete="off">admin</button>
+                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="button"
+                                    autocomplete="off">integrator</button>
+                                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="button"
+                                    autocomplete="off">salesman</button>
+                            </td>
+                            <td class="text-end">
+                                <a href="/editUser" type="button" class="btn btn-primary btn-sm">
+                                    <svg class="bi" width="16" height="16">
+                                        <use xlink:href="#edit" />
+                                    </svg>
+                                </a>
+                                <a href="/deleteUser" type="button" class="btn btn-primary btn-sm">
+                                    <svg class="bi" width="16" height="16">
+                                        <use xlink:href="#trash" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <%});%>
+
+                </tbody>
+            </table>
+        </div>
+</body>
+
+<%- include("../partials/footer.ejs") %>
+
+</html>

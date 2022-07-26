@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("../partials/head.ejs") %>
+</head>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <form class="my-4">
+            <div class="form-row">
+              <div class="form-group">
+                <h4>Company Name:</h4>
+                <div class="col-3">
+                  <input type="text" id="addIntegrationName" class="form-control my-1"
+                    placeholder="e.g. Phoenix Music International Ltd" />
+                </div>
+              </div>
+              <div class="form-group">
+                <h5>Contact person:</h5>
+                <div class="col-3">
+                  <input type="text" id="addIntegrationContactPerson" class="form-control my-1"
+                    placeholder="Full name:" />
+                </div>
+                <div class="col-4">
+                  <input type="email" id="addIntegrationEmail" class="form-control my-1" placeholder="Email:" />
+                </div>
+                <div class="col-2">
+                  <input type="tel" id="addIntegrationPhoneNumber" class="form-control my-1"
+                    placeholder="Phone Number:" />
+                </div>
+                <div class="col-4">
+                  <input type="text" id="addIntegrationSkype" class="form-control my-1" placeholder="Skype:" />
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="from-group">
+                <h5 class="m-0 p-0">Status:</h5>
+                <p class="m-0 p-0"><small>Check one of the options!</small></p>
+                <div class="form-check">
+                  <input class="form-check-input status" type="radio" name="flexRadioDefault" value="Negotiations"
+                    id="radio1" />
+                  <label class="form-check-label" for="radio1">
+                    Negotiations
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input status" type="radio" name="flexRadioDefault" value="Integration"
+                    id="radio2" />
+                  <label class="form-check-label" for="radio2">
+                    Integration
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input status" type="radio" name="flexRadioDefault" value="Production"
+                    id="radio3" />
+                  <label class="form-check-label" for="radio3">
+                    Production
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-10 form-group">
+                <h5>Salesman:</h5>
+                <select class="form-select" id="addIntegrationSalesman">
+                  <option selected>Click here to select a person!</option>
+                  <% salesmans.forEach(salesman=> { %>
+                    <% if (salesman.user_id==1) { return; } %>
+                      <option value="<%= salesman.user_id %>">
+                        <%= salesman.name %>
+                      </option>
+                      <% }) %>
+
+                </select>
+              </div>
+              <div class="col-10 from-group">
+                <h5>Integrator:</h5>
+                <select class="form-select" id="addIntegrationIntegrator">
+                  <option selected>Click here to select a person!</option>
+                  <% integrators.forEach(integrator=> { %>
+                    <option value="<%= integrator.user_id %>">
+                      <%= integrator.name %>
+                    </option>
+                    <% }) %>
+                </select>
+              </div>
+
+              <div class="from-group">
+                <h5 class="m-0 p-0">Products:</h5>
+                <p class="m-0 p-0"><small>Check the given options!</small></p>
+                <div class="form-check">
+                  <input class="form-check-input products" type="checkbox" value="File servers" id="check1" />
+                  <label class="form-check-label" for="check1"> File servers </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input products" type="checkbox" value="Cloud services" id="check2" />
+                  <label class="form-check-label" for="check2">
+                    Cloud services
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input products" type="checkbox" value="Odds feed data" id="check3" />
+                  <label class="form-check-label" for="check3">
+                    Odds feed data
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input products" type="checkbox" value="Data security" id="check4" />
+                  <label class="form-check-label" for="check4">
+                    Data security
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input products" type="checkbox" value="Support system" id="check5" />
+                  <label class="form-check-label" for="check5"> Support system </label>
+                </div>
+              </div>
+            </div>
+
+            <button id="addIntegrationForm" type="button" class="btn btn-primary my-2 text-black">
+              Add Integration
+            </button>
+            <div id="errorMessage" class="alert alert-danger m-1 p-1" role="alert"></div>
+            <div id="successMessage" class="alert alert-success m-1 p-1" role="alert"></div>
+          </form>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+    </div>
+    <script src="/public/home.js"></script>
+</body>
+
+<%- include("../partials/footer.ejs") %>
+
+</html>

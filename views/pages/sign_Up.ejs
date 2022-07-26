@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+  <body>
+    <section class="bg-black vh-110">
+      <div class="container py-4 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+            <div class="card shadow-2-strong border border-primary border-4">
+              <div class="card-body p-4 text-center">
+                <form>
+                  <h2>
+                    integrationApp
+                    <img src="https://cdn-icons-png.flaticon.com/512/1283/1283218.png" width="50px" height="50px" />
+                  </h2>
+                  <h4 class="mb-4">Sign Up!</h4>
+                  <div id="errorMessage" class="alert alert-danger m-1 p-1" role="alert">
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="nameSignup"> Full name:</label>
+                    <input type="text" id="nameSignup" class="form-control text-center" />
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="positionSignup">Position:</label>
+                    <input type="text" id="positionSignup" class="form-control text-center" />
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="usernameSignup">Username:</label>
+                    <input type="text" id="usernameSignup" class="form-control text-center" />
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="passwordSignup">Password:</label>
+                    <input type="password" id="passwordSignup" class="form-control text-center" />
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="passwordRepeatSignup">Repeat password:</label>
+                    <input type="password" id="passwordRepeatSignup" class="form-control text-center" />
+                  </div>
+                  <div class="form-check d-flex justify-content-start my-2">
+                    <input class="form-check-input" type="checkbox" id="showPasswordSignup" />
+                    <label class="form-check-label ms-2" for="showPasswordSignup">Show password?</label>
+                  </div>
+                  <button id="signUpForm" class="btn btn-primary d-grid col-8 mx-auto text-black" type="button">Sign
+                    Up!</button>
+                  <p class="small fw-bold mt-2 pt-1 mb-0">You already have an account ?<a href="/signin" type="button"
+                      class="btn btn-link btn-sm">Sign In!</a></p>
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/public/sign_Up.js"></script>
+  </body>
+
+</html>

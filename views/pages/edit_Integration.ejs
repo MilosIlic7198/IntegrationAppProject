@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("../partials/head.ejs") %>
+</head>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+
+    <div class="container">
+      <div class="row">
+        <div class="d-flex justify-content-center">
+          <form class="my-4">
+            <div class="form-row">
+              <div class="form-group">
+                <h4>Firm Name:</h4>
+                <div>
+                  <input type="text" id="editIntegrationName" class="form-control my-1"
+                    value="<%=integration[0].name%>" />
+                </div>
+                <div>
+                  <input type="text" id="editIntegrationCompanyId" class="form-control my-1"
+                    value="<%=integration[0].company_id%>" />
+                </div>
+              </div>
+              <div class="form-group">
+                <h5>Contact person:</h5>
+                <div>
+                  <input type="text" id="editIntegrationContactPerson" class="form-control my-1"
+                    value="<%=integration[0].contact_name%>" />
+                </div>
+                <div>
+                  <input type="email" id="editIntegrationEmail" class="form-control my-1"
+                    value="<%=integration[0].contact_email%>" />
+                </div>
+                <div>
+                  <input type="tel" id="editIntegrationPhoneNumber" class="form-control my-1"
+                    value="<%=integration[0].contact_phone%>" />
+                </div>
+                <div>
+                  <input type="text" id="editIntegrationSkype" class="form-control my-1"
+                    value="<%=integration[0].contact_skype%>" />
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="from-group">
+                <h5 class="m-0 p-0">Status:</h5>
+                <p class="m-0 p-0"><small>Check one of the options!</small></p>
+                <div class="form-check">
+                  <input class="form-check-input editStatus" type="radio" name="flexRadioDefault" value="Negotiations"
+                    id="radio1" <% if (integration[0].status=="Negotiations" ) {%> checked <%}%> />
+                    <label class="form-check-label" for="radio1">
+                      Negotiations
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input editStatus" type="radio" name="flexRadioDefault" value="Integration"
+                    id="radio2" <% if (integration[0].status=="Integration" ) {%> checked <%}%> />
+                    <label class="form-check-label" for="radio2">
+                      Integration
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input editStatus" type="radio" name="flexRadioDefault" value="Production"
+                    id="radio3" <% if (integration[0].status=="Production" ) {%> checked <%}%> />
+                    <label class="form-check-label" for="radio3">
+                      Production
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <h5>Salesman:</h5>
+                <select class="form-select" id="editIntegrationSalesman">
+                  <option selected>Click here to change salesman!</option>
+                  <% salesmans.forEach(salesman=> { %>
+                    <% if (salesman.user_id==1) { return; } %>
+                      <option value="<%= salesman.user_id %>" <%if (integration[0].salesman_id==salesman.user_id ) {%>
+                        selected <%}%> >
+                          <%= salesman.name %>
+                      </option>
+                      <% }) %>
+                </select>
+              </div>
+              <div class="from-group">
+                <h5>Integrator:</h5>
+                <select class="form-select" id="editIntegrationIntegrator">
+                  <option selected>Click here to change integrator!</option>
+                  <% integrators.forEach(integrator=> { %>
+                    <option value="<%= integrator.user_id %>" <%if (integration[0].integrator_id==integrator.user_id )
+                      {%> selected <%}%> >
+                        <%= integrator.name %>
+                    </option>
+                    <% }) %>
+                </select>
+              </div>
+
+              <div class="from-group">
+                <h5 class="m-0 p-0">Products:</h5>
+                <p class="m-0 p-0">
+                  <small>Check or uncheck the given options!</small>
+                </p>
+
+                <div class="form-check">
+                  <input class="form-check-input editProducts" type="checkbox" value="File servers" id="check1" <%
+                    for(let i=0; i < product.length; i++){ %>
+                  <%if (product[i]=="File servers" ) {%> checked <%} else{ %> return; <% } %>
+                        <%}%>
+                          />
+                          <label class="form-check-label" for="check1"> File servers </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input editProducts" type="checkbox" value="Cloud services" id="check2" <%
+                    for(let i=0; i < product.length; i++){ %>
+                  <%if (product[i]=="Cloud services" ) {%> checked <%} else{ %> return; <% } %>
+                        <%}%> />
+                          <label class="form-check-label" for="check2">
+                            Cloud services
+                          </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input editProducts" type="checkbox" value="Odds feed data" id="check3" <%
+                    for(let i=0; i < product.length; i++){ %>
+                  <%if (product[i]=="Odds feed data" ) {%> checked <%} else{ %> return; <% } %>
+                        <%}%> />
+                          <label class="form-check-label" for="check3">
+                            Odds feed data
+                          </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input editProducts" type="checkbox" value="Data security" id="check4" <%
+                    for(let i=0; i < product.length; i++){ %>
+                  <%if (product[i]=="Data security" ) {%> checked <%} else{ %> return; <% } %>
+                        <%}%> />
+                          <label class="form-check-label" for="check4">
+                            Data security
+                          </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input editProducts" type="checkbox" value="Support system" id="check5" <%
+                    for(let i=0; i < product.length; i++){ %>
+                  <%if (product[i]=="Support system" ) {%> checked <%} else{ %> return; <% } %>
+                        <%}%> />
+                          <label class="form-check-label" for="check5"> Support system </label>
+                </div>
+              </div>
+            </div>
+
+            <button id="editIntegrationForm" type="button" class="btn btn-primary my-2 text-black"
+              data-id="<%=integration[0].client_id%>">
+              Edit Integration
+            </button>
+            <div id="editErrorMessage" class="alert alert-danger m-1 p-1" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/public/edit.js"></script>
+</body>
+
+<%- include("../partials/footer.ejs") %>
+
+</html>

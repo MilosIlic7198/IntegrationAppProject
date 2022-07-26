@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+  <body>
+    <%- include("../partials/nav.ejs") %>
+
+      <div class="container">
+        <form class="d-flex col-3 my-2">
+          <input class="form-control me-2" type="search" placeholder="Search . . ." aria-label="Search" />
+          <button class="btn btn-primary text-black" type="submit">Search</button>
+        </form>
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <% let i=0; %>
+            <% list.forEach(client=> {%>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne<%=i%>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne<%=i%>" aria-expanded="false"
+                    aria-controls="flush-collapseOne<%=i%>">
+                    <h5 class="text-black m-0">
+                      <%= client.name %>
+                    </h5>
+                  </button>
+                </h2>
+
+                <div id="flush-collapseOne<%=i%>" class="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne<%=i%>" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Company id:</th>
+                          <th scope="col">Status:</th>
+                          <th scope="col">Name:</th>
+                          <th scope="col">Email:</th>
+                          <th scope="col">Phone:</th>
+                          <th scope="col">Skype:</th>
+                          <th scope="col">Salesman:</th>
+                          <th scope="col">Integrator:</th>
+                          <th scope="col">Products:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            <%= client.company_id %>
+                          </th>
+                          <td>
+                            <%= client.status %>
+                          </td>
+                          <td>
+                            <%= client.contact_name %>
+                          </td>
+                          <td>
+                            <%= client.contact_email %>
+                          </td>
+                          <td>
+                            <%= client.contact_phone %>
+                          </td>
+                          <td>
+                            <%= client.contact_skype %>
+                          </td>
+                          <td>
+                            <%= client.salesman_name %>
+                          </td>
+                          <td>
+                            <%= client.integrator_name %>
+                          </td>
+                          <td>
+                            <%= client.product %>
+                          </td>
+                          <td>
+                            <a type="button" href="/integrationList/editIntegration/<%=client.client_id%>"
+                              class="btn btn-primary btn-sm mb-1">
+                              <svg class="bi" width="16" height="16">
+                                <use xlink:href="#edit" />
+                              </svg>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table class="table table-hover table-borderless">
+                      <thead>
+                        <tr>
+                          <th scope="col">Notes:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td scope="row">
+                            <div class="alert alert-danger p-1 errorMessageNote" role="alert"></div>
+                            <div class="mb-2" style="height: 157px; overflow-y: scroll">
+                              <% notes.forEach(note=> { %> <% if (note.note==null) {return;}%>
+                                  <% if (note.client_id==client.client_id) { %>
+                                    <div class="border-bottom border-2 border-dark mb-1">
+                                      <p>
+                                        <small><b>Date: </b>
+                                          <%= note.note_date_time %>
+                                        </small>
+                                      </p>
+
+                                      <p>
+                                        <small><b>Note: </b>
+                                          <%= note.note %>
+                                        </small>
+                                      </p>
+
+                                      <p><small>
+                                          <%= note.client_name %>
+                                        </small></p>
+                                    </div>
+                                    <% if (note.public==2) { %>
+                                      <button type="button" class="btn btn-primary btn-sm deleteNote"
+                                        data-id="<%=note.note_id%>">
+                                        <svg class="bi" width="16" height="16">
+                                          <use xlink:href="#trash" />
+                                        </svg>
+                                      </button>
+                                      <% } %>
+                                        <% } %>
+                                          <% }); %>
+                            </div>
+
+                            <form>
+                              <label class="form-label" for="publicPrivateNote">
+                                Is this note gonna be just for you? or for everyone?
+                              </label>
+
+                              <select class="form-select publicPrivateNote">
+                                <option value="1">Public</option>
+
+                                <option selected value="2">Private</option>
+                              </select>
+
+                              <label class="form-label" for="writeNote">
+                                Write a note!
+                              </label>
+
+                              <input class="form-control writeNote" type="text" />
+
+                              <button type="button" class="btn btn-primary btn-sm mt-1 setNote"
+                                data-id="<%=client.client_id%>">
+                                <svg class="bi" width="16" height="16">
+                                  <use xlink:href="#save" />
+                                </svg>
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <% i++;%>
+                <% }); %>
+        </div>
+      </div>
+      <script src="/public/list.js"></script>
+  </body>
+
+  <%- include("../partials/footer.ejs") %>
+
+</html>
